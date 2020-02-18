@@ -1,6 +1,8 @@
 import React from "react";
 import { Button, Icon, Modal, Form } from "semantic-ui-react";
-
+import SemanticDatepicker from 'react-semantic-ui-datepickers';
+import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
+ 
 class TaskForm extends React.Component {
   state = {
     formDetails: {
@@ -23,7 +25,16 @@ class TaskForm extends React.Component {
     });
   };
 
-  //handle datepicker change : TBD
+  //handle datepicker change 
+  handleDateChange = (e, data) => {
+      this.setState({
+          ...this.state,
+          formDetails : {
+              ...this.state.formDetails,
+              dueDate : data.value
+          }
+      })
+  }
 
   // handle form submit
   handleSubmit = e => {
@@ -107,6 +118,10 @@ class TaskForm extends React.Component {
                   onChange={this.handleInputChange}
                   value={this.state.formDetails.body}
                 ></textarea>
+              </Form.Field>
+              <Form.Field>
+              <label>Due Date</label>
+              <SemanticDatepicker datePickerOnly onChange={this.handleDateChange} />
               </Form.Field>
             </Form>
           </Modal.Content>
