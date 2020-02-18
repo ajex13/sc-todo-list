@@ -1,14 +1,23 @@
 import {
   ADD_TASK,
   FETCH_TASK,
+  FETCH_TASK_SUCCESS,
+  FETCH_TASK_FAIL,
   COMPLETE_TASK,
   DELETE_TASK
 } from "../actions/types";
 
-export default function taskReducer(state = [], action) {
+const initialState = {
+    tasks: [],
+    loading: false,
+    error: null
+  };
+
+export default function taskReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TASK:
-      return [...state, action.payload];
+      return {...state,
+         tasks : [...state.tasks, action.payload]};
     case DELETE_TASK:
       return state.filter(task => task._id !== action.payload.id);
     case COMPLETE_TASK:
@@ -20,7 +29,24 @@ export default function taskReducer(state = [], action) {
         }
       });
     case FETCH_TASK:
-      return action.tasks;
+      return {
+        ...state,
+        loading: true,
+        error: null
+      };
+    case FETCH_TASK_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        tasks: action.payload.products
+      };
+    case FETCH_TASK_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+        tasks: []
+      };
     default:
       return state;
   }

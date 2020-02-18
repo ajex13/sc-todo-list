@@ -1,7 +1,14 @@
-import { ADD_TASK, FETCH_TASK, COMPLETE_TASK, DELETE_TASK } from "./types";
+import {
+  ADD_TASK,
+  FETCH_TASK,
+  COMPLETE_TASK,
+  DELETE_TASK,
+  FETCH_TASK_SUCCESS,
+  FETCH_TASK_FAIL
+} from "./types";
 import axios from "axios";
 
-const baseURL = "http://localhost:4000/";
+const baseURL = "http://localhost:4000";
 
 // Add task
 export const createTask = ({ title, body }) => {
@@ -30,24 +37,35 @@ export const createTaskSuccess = data => {
 
 // Fetch tasks
 export const fetchAllTasks = () => {
+//   console.log("fetchAllTasks called");
   return dispatch => {
+    dispatch(fetchTasks())
     return axios
       .get(`${baseURL}/tasks`)
       .then(response => {
-        dispatch(fetchTasks(response.data));
+        dispatch(fetchProductsSuccess(response.data));
       })
       .catch(error => {
+        dispatch(fetchProductsFailure(error))  
         throw error;
       });
   };
 };
 export const fetchTasks = tasks => {
   return {
-    type: FETCH_TASK,
-    tasks
+    type: FETCH_TASK
   };
 };
 
+export const fetchProductsSuccess = products => ({
+  type: FETCH_TASK_SUCCESS,
+  payload: { products }
+});
+
+export const fetchProductsFailure = error => ({
+  type: FETCH_TASK_FAIL,
+  payload: { error }
+});
 // Complete task
 export const completeTask = id => {
   return dispatch => {

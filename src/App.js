@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import TaskForm from "./components/TaskForm";
+import TaskList from "./containers/TaskList";
+import CreateTask from "./containers/CreateTask";
 
 class App extends Component {
   render() {
     return (
     <div>
-      <TaskForm/>
+      <CreateTask/>
+      <hr/>
+      <TaskList/>
       </div>);
   }
 }
