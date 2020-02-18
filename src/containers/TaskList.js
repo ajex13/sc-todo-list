@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import Task from "../components/Task";
 import { fetchAllTasks, deleteTask, completeTask } from "../actions";
+import { Button, Icon, List } from 'semantic-ui-react'
 
 class TaskList extends React.Component {
   componentDidMount() {
@@ -22,9 +23,12 @@ class TaskList extends React.Component {
 
     return (
       <div>
-        {tasks.map(task => {
-          return <Task task={task} onDelete={onDelete} onComplete={onComplete} key={task._id} />;
+            <List divided verticalAlign='middle'>
+            {tasks.map(task => {
+          return <List.Item><Task task={task} onDelete={onDelete} onComplete={onComplete} key={task._id} /></List.Item>;
         })}
+            </List>
+
       </div>
     );
   }
