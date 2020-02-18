@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-
+import tasks from './taskReducer';
 export default combineReducers({
-    //dummy
-    replaceMeWithTaskLater : 0
+    tasks : tasks
 });

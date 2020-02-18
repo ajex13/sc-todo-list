@@ -1,8 +1,12 @@
 import React, { Component } from "react";
+import TaskForm from "./components/TaskForm";
 
 class App extends Component {
   render() {
-    return <div>Stuff will appear here</div>;
+    return (
+    <div>
+      <TaskForm/>
+      </div>);
   }
 }
 
