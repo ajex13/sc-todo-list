@@ -13,7 +13,7 @@ class TaskList extends React.Component {
     const { error, loading, tasks, onDelete, onComplete } = this.props;
 
     if (!tasks.length) {
-      return <div>There tasks found.</div>;
+      return <div>No tasks found.</div>;
     }
 
     if (loading) {
