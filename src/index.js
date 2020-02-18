@@ -6,6 +6,8 @@ import { Provider } from "react-redux";
 import App from "./App";
 import rootReducer from "./reducers";
 
+import 'semantic-ui-css/semantic.min.css'
+
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
