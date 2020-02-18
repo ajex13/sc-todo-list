@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import { createTask } from '../actions';
-import TaskForm from '../components/TaskForm';
+import { connect } from "react-redux";
+import { createTask } from "../actions";
+import TaskForm from "../components/TaskForm";
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -10,7 +10,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(TaskForm);
+export default connect(null, mapDispatchToProps)(TaskForm);

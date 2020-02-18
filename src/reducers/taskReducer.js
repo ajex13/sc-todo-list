@@ -8,26 +8,31 @@ import {
 } from "../actions/types";
 
 const initialState = {
-    tasks: [],
-    loading: false,
-    error: null
-  };
+  tasks: [],
+  loading: false,
+  error: null
+};
 
 export default function taskReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TASK:
-      return {...state,
-         tasks : [...state.tasks, action.payload]};
+      return { ...state, tasks: [...state.tasks, action.payload] };
     case DELETE_TASK:
-      return state.filter(task => task._id !== action.payload.id);
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => task._id !== action.payload.id)
+      };
     case COMPLETE_TASK:
-      return state.map(task => {
-        if (task._id !== action.payload.id) {
-          return task;
-        } else {
-          return { ...task, isCompleted: true };
-        }
-      });
+      return {
+        ...state,
+        tasks: state.tasks.map(task => {
+          if (task._id !== action.payload.id) {
+            return task;
+          } else {
+            return { ...task, isCompleted: true };
+          }
+        })
+      };
     case FETCH_TASK:
       return {
         ...state,

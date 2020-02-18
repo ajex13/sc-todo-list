@@ -3,7 +3,9 @@ import React from "react";
 class TaskForm extends React.Component {
   state = {
     title: "",
-    body: ""
+    body: "",
+    isCompleted : false,
+    dueDate : Date.now()
   };
 
   // handle input change

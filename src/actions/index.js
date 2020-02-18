@@ -11,10 +11,10 @@ import axios from "axios";
 const baseURL = "http://localhost:4000";
 
 // Add task
-export const createTask = ({ title, body }) => {
+export const createTask = (payload) => {
   return dispatch => {
     return axios
-      .post(`${baseURL}/tasks`, { title, body })
+      .post(`${baseURL}/tasks`, payload)
       .then(response => {
         dispatch(createTaskSuccess(response.data));
       })
@@ -27,11 +27,7 @@ export const createTask = ({ title, body }) => {
 export const createTaskSuccess = data => {
   return {
     type: ADD_TASK,
-    payload: {
-      _id: data._id,
-      title: data.title,
-      body: data.body
-    }
+    payload: data
   };
 };
 
@@ -80,11 +76,11 @@ export const completeTask = id => {
   };
 };
 
-export const completeTaskSuccess = id => {
+export const completeTaskSuccess = data => {
   return {
     type: COMPLETE_TASK,
     payload: {
-      id
+      id : data._id
     }
   };
 };
