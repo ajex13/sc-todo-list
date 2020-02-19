@@ -1,4 +1,4 @@
-## This is a demo "react" project
+## This is a demo "MERN" project
 ![ajex13](https://img.shields.io/badge/ajex13-this%20react%20project%20rocks-green?style=for-the-badge&logo=React)
 
 
@@ -12,3 +12,15 @@
     \____/|_|_| |_| |_| .__/|_|\___|  \__\___/ \__,_|\___/  |_|_|___/\__|
                       | |                                                
                       |_|                                                
+                      
+                      
+ ## DEV env steps 
+ 
+ `npm install`
+ 
+ `npm start`
+
+Start the mongodb server using this command: `mongod`
+
+
+Start the Node.js server using this command: `nodemon server/server`
