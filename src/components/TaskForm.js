@@ -46,13 +46,18 @@ class TaskForm extends React.Component {
     ) {
       this.props.onAddPost(this.state.formDetails);
       //reset form once submitted
-      this.handleReset();
-      this.closeModal();
+      this.setState({
+        ...this.state,
+        showModal: false
+      },() => {
+          this.handleReset();
+      });
     }
   };
 
   //handle reset form
   handleReset = () => {
+      console.log('handleReset called')
     this.setState({
       ...this.state,
       formDetails: {
@@ -137,7 +142,7 @@ class TaskForm extends React.Component {
           </Modal.Actions>
         </Modal>
 
-        {/* {JSON.stringify(this.state)} */}
+        {console.log(JSON.stringify(this.state))}
       </div>
     );
   }
