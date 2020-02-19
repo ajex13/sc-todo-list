@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import Task from "../components/Task";
 import { fetchAllTasks, deleteTask, completeTask } from "../actions";
-import { Button, Icon, List } from 'semantic-ui-react'
+import { List } from 'semantic-ui-react'
+import { orderBy } from 'lodash';
 
 class TaskList extends React.Component {
   componentDidMount() {
@@ -10,9 +11,11 @@ class TaskList extends React.Component {
   }
 
   render() {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     const { error, loading, tasks, onDelete, onComplete } = this.props;
-
+    const sortedTasks = orderBy(tasks, function(dateObj) {
+        return new Date(dateObj.dueDate);
+      })
     if (!tasks.length) {
       return <div>No tasks found.</div>;
     }
@@ -24,7 +27,7 @@ class TaskList extends React.Component {
     return (
       <div>
             <List divided verticalAlign='middle'>
-            {tasks.map(task => {
+            {sortedTasks.map(task => {
           return <List.Item><Task task={task} onDelete={onDelete} onComplete={onComplete} key={task._id} /></List.Item>;
         })}
             </List>
@@ -35,7 +38,7 @@ class TaskList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state',state);
+//   console.log('state',state);
   return {
     tasks: state.tasks.tasks,
     loading: state.tasks.loading,

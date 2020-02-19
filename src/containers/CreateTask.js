@@ -4,8 +4,8 @@ import TaskForm from "../components/TaskForm";
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddPost: post => {
-      dispatch(createTask(post));
+    onAddPost: task => {
+      dispatch(createTask(task));
     }
   };
 };

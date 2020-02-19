@@ -39,10 +39,10 @@ export const fetchAllTasks = () => {
     return axios
       .get(`${baseURL}/tasks`)
       .then(response => {
-        dispatch(fetchProductsSuccess(response.data));
+        dispatch(fetchTasksSuccess(response.data));
       })
       .catch(error => {
-        dispatch(fetchProductsFailure(error))  
+        dispatch(fetchTasksFailure(error))  
         throw error;
       });
   };
@@ -53,12 +53,12 @@ export const fetchTasks = tasks => {
   };
 };
 
-export const fetchProductsSuccess = products => ({
+export const fetchTasksSuccess = tasks => ({
   type: FETCH_TASK_SUCCESS,
-  payload: { products }
+  payload: { tasks }
 });
 
-export const fetchProductsFailure = error => ({
+export const fetchTasksFailure = error => ({
   type: FETCH_TASK_FAIL,
   payload: { error }
 });
