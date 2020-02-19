@@ -43,7 +43,7 @@ export default function taskReducer(state = initialState, action) {
       return {
         ...state,
         loading: false,
-        tasks: action.payload.products
+        tasks: action.payload.tasks
       };
     case FETCH_TASK_FAIL:
       return {

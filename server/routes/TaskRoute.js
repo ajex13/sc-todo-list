@@ -17,6 +17,7 @@ TaskRoute.route("/").post(function(req, res) {
 // Fetch all tasks
 TaskRoute.route("/").get(function(req, res) {
   Task.find()
+    .sort({dueDate:-1})
     .then(tasks => {
       res.status(200).json(tasks);
     })
